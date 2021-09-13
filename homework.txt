@@ -1,0 +1,123 @@
+// Q1................................................................................................................................
+
+function BestProfit(arr) {
+    const days = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday","Thirsday"];
+    var min = Math.min(...arr);
+    var max = Math.max(...arr);
+    return(
+        "best day to but is : " + [days[arr.indexOf(min)]+ " at " + min +" and best day to sell is : "+ days[arr.indexOf(max) ]+ " at " + max]
+    )     
+}
+console.log(BestProfit([150, 146, 142, 143, 145, 144]));
+// Q2................................................................................................................................
+
+function CheckOverlap(t1Start, t1End, t2Start, t2End) {
+    if (t1End[0]==t2Start[0] && t1End[1]==t2Start[1]){
+        return ("overlap")
+    }
+    else
+    return ("no overlap")   
+}
+console.log(CheckOverlap("13/5/2021 13:00","14/5/2021 13:00","14/5/2021 13:00","16/5/2021 13:00")
+);
+// Q3................................................................................................................................
+
+function HowManyPairs(shoes) {
+    var l=0,r=0;
+    for(var counter =0 ; counter < shoes.length ; counter++) {
+        if (shoes[counter]=='L'){
+            l-=-1;
+        }
+        else{
+            r-=-1;
+        }
+    }
+    var tarray=[];
+    tarray.push(l);
+    tarray.push(r);
+    var min = Math.min(...tarray);
+    var max = Math.max(...tarray);
+    var diff = max - min;
+    var pairs = min;
+    pairs = pairs - diff;
+    return pairs;
+}
+console.log(HowManyPairs("RLRLRRLL"));
+console.log(HowManyPairs("RRLLRRRLLR"));
+// Q4................................................................................................................................
+
+function HowManyLetters(word) {
+    var obj={}
+    for(var i = 0; i < word.length ; i++) {
+        var t = word[i]
+        obj[t] = (isNaN(obj[t]) ? 1 : obj[t] + 1);
+}
+return (obj)
+}
+console.log(HowManyLetters("kkssffoos"));
+// Q5................................................................................................................................
+
+var num = [23, 15, 34, 17, -28];
+function sort(num){
+    for (var j = 0; j < num.length - 1; j++) {
+        for (var i = 0, s; i < num.length - 1; i++) {
+          if (num[i]> num[i + 1]) {
+            s = num[i + 1];
+            num[i + 1] = num[i];
+            num[i] = s;
+            }; 
+        }; 
+    }
+    return (num)
+}
+console.log(sort(num));
+// Q6................................................................................................................................
+
+function minMax(array){
+    var temp=[];
+    var min = Math.min(...array);
+    var max = Math.max(...array);
+    temp[0]=min;
+    temp[1]=max;
+    return(temp);
+}
+console.log(minMax([2334454, 5]));
+// Q7................................................................................................................................
+
+function missingNum(ar){
+    ar.sort(function(a, b) {
+        return a - b;
+    });
+    var c2=0;
+    for (var c=1 ; c<11 ; c++){
+        if (c == ar[c2]){
+           c2++;
+        }
+        else{
+            break;
+         }
+    }
+    return(c);
+}
+console.log(missingNum([7, 2, 3, 6, 5, 9, 1, 4, 8]))
+// Q8................................................................................................................................
+
+var lesstwenty = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+var Lesshundred = ['ten','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+function numToEng (num, en = []){
+    if (num === 0) 
+    return (en.length ? en : 'zero');
+    if (num < 20) {
+      en.push(lesstwenty[num]);
+      return (numToEng(0, en));
+    } 
+    if (num < 100) {
+      en.push(Lesshundred[Math.floor(num / 10) - 1])
+      return (numToEng(num % 10, en));
+    }
+    if (num < 1000) {
+      en.push(numToEng(Math.floor(num / 100)) + ' hundred');
+      return (numToEng(num % 100, en));
+    }
+};
+console.log(numToEng(909).join(' '));
