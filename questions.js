@@ -1,110 +1,121 @@
-/** Q1
- * Assume you have the USD prices for this week from Saturday to Thursday
- * in contrast to the Iraqi Dinar as an array
- * arr = [150, 146, 142, 143, 145, 144]
- * calculate the max profit at which day you should buy at and what day should you sell at
- * for this example we buy at Monday an we sell at Wednesday
- */
+// Q1................................................................................................................................
 
-function BestProfit(arr) {}
+function BestProfit(arr) {
+    var min = Math.min(...arr);
+    var max = Math.max(...arr);
+    return(("best day to buy is Monday at : " + min + "\n" + "best day to sell is Wednesday at : " + max)
+    )     
+}
 console.log(BestProfit([150, 146, 142, 143, 145, 144]));
+// Q2................................................................................................................................
 
-/** Q2
- * assume you have two time periods
- * for example
- * period1 = 13/5/2021 01:00 to 14/5/2021 01:00
- * period2 = 15/5/2021 01:00 to 16/5/2021 01:00
- * write a function that tells us whether two given periods overlap or not
- * example CheckOverlap("13/5/2021 13:00","14/5/2021 13:00", "15/5/2021 13:00","16/5/2021 13:00" ) => no overlap
- * example CheckOverlap("13/5/2021 13:00","14/5/2021 13:00", "14/5/2021 13:00","16/5/2021 13:00" ) => overlap
- */
-
-function CheckOverlap(t1Start, t1End, t2Start, t2End) {}
-console.log(
-  CheckOverlap(
-    "13/5/2021 13:00",
-    "14/5/2021 13:00",
-    "14/5/2021 13:00",
-    "16/5/2021 13:00"
-  )
+function CheckOverlap(t1Start, t1End, t2Start, t2End) {
+    if (t1End[0]==t2Start[0] && t1End[1]==t2Start[1]){
+        return ("overlap")
+    }
+    else
+    return ("no overlap")   
+}
+console.log(CheckOverlap("13/5/2021 13:00","14/5/2021 13:00","14/5/2021 13:00","16/5/2021 13:00")
 );
+// Q3................................................................................................................................
 
-/** Q3
- * assume you have a shoes factory and the production lines produces shoes as follows
- * L R LL R R RR LL
- * write a function that takes these shoes as in a string
- * shoes = "RLRLRRLL"
- * then return how many pairs in it
- * result = 4
- * example HowManyPairs("RLRLRRLL") => 4
- * example HowManyPairs("RRLLRRRLLR") => 2
- */
-
-function HowManyPairs(shoes) {}
+function HowManyPairs(shoes) {
+    var l=0,r=0;
+    for(var counter =0 ; counter < shoes.length ; counter++) {
+        if (shoes[counter]=='L'){
+            l-=-1;
+        }
+        else{
+            r-=-1;
+        }
+    }
+    var tarray=[];
+    tarray.push(l);
+    tarray.push(r);
+    var min = Math.min(...tarray);
+    var max = Math.max(...tarray);
+    var diff = max - min;
+    var pairs = min;
+    pairs = pairs - diff;
+    return pairs;
+}
 console.log(HowManyPairs("RLRLRRLL"));
+console.log(HowManyPairs("RRLLRRRLLR"));
+// Q4................................................................................................................................
 
-/** Q4
- *    Write a function that takes a string and return JSON of all the letters and its count. check the example to know more
- *    letterCount('abcac') => {a: 2, b: 1, c: 2}
- */
-
-function HowManyLetters(word) {}
+function HowManyLetters(word) {
+    var obj={}
+    for(var i = 0; i < word.length ; i++) {
+        var t = word[i]
+        obj[t] = (isNaN(obj[t]) ? 1 : obj[t] + 1);
+}
+return (obj)
+}
 console.log(HowManyLetters("kkssffoos"));
+// Q5................................................................................................................................
 
+var num = [23, 15, 34, 17, -28];
+function sort(num){
+    for (var j = 0; j < num.length - 1; j++) {
+        for (var i = 0, s; i < num.length - 1; i++) {
+          if (num[i]> num[i + 1]) {
+            s = num[i + 1];
+            num[i + 1] = num[i];
+            num[i] = s;
+            }; 
+        }; 
+    }
+    return (num)
+}
+console.log(sort(num));
+// Q6................................................................................................................................
 
-/** Q5
-  * Create a function that takes an array of integers as an argument and returns the same array in ascending order. Using sort() would be easy, but for this challenge YOU have to sort the array creating your own algorithm.
- 
- Examples
- sortArray([2, -5, 1, 4, 7, 8]) ➞ [-5, 1, 2, 4, 7, 8]
- 
- sortArray([23, 15, 34, 17, -28]) ➞ [-28, 15, 17, 23, 34]
- 
- sortArray([38, 57, 45, 18, 47, 39]) ➞ [18, 38, 39, 45, 47, 57]
- Notes
- The arrays can contain either positive or negative elements.
- The arrays will only contain integers.
- The arrays won't contain duplicate numbers.
- This is a challenge to enhance your ability, using the sort built-in won't enhance your skills.
-  */
+function minMax(array){
+    var temp=[];
+    var min = Math.min(...array);
+    var max = Math.max(...array);
+    temp[0]=min;
+    temp[1]=max;
+    return(temp);
+}
+console.log(minMax([2334454, 5]));
+// Q7................................................................................................................................
 
-/** Q6
-  * Create a function that takes an array of numbers and return both the minimum and maximum numbers, in that order.
- 
- Examples
- minMax([1, 2, 3, 4, 5]) ➞ [1, 5]
- 
- minMax([2334454, 5]) ➞ [5, 2334454]
- 
- minMax([1]) ➞ [1, 1]
-  */
+function missingNum(ar){
+    ar.sort(function(a, b) {
+        return a - b;
+    });
+    var c2=0;
+    for (var c=1 ; c<11 ; c++){
+        if (c == ar[c2]){
+           c2++;
+        }
+        else{
+            break;
+         }
+    }
+    return(c);
+}
+console.log(missingNum([7, 2, 3, 6, 5, 9, 1, 4, 8]))
+// Q8................................................................................................................................
 
-/** Q7
-  * Create a function that takes an array of numbers between 1 and 10 (excluding one number) and returns the missing number.
- 
- Examples
- missingNum([1, 2, 3, 4, 6, 7, 8, 9, 10]) ➞ 5
- 
- missingNum([7, 2, 3, 6, 5, 9, 1, 4, 8]) ➞ 10
- 
- missingNum([10, 5, 1, 2, 4, 6, 8, 3, 9]) ➞ 7
- Notes
- The array of numbers will be unsorted (not in order).
- Only one number will be missing.
-  */
-
-/** Q8
-  * Write a function that accepts a positive integer between 0 and 999 inclusive and returns a string representation of that integer written in English.
- 
- Examples
- numToEng(0) ➞ "zero"
- 
- numToEng(18) ➞ "eighteen"
- 
- numToEng(126) ➞ "one hundred twenty six"
- 
- numToEng(909) ➞ "nine hundred nine"
- Notes
- There are no hyphens used (e.g. "thirty five" not "thirty-five").
- The word "and" is not used (e.g. "one hundred one" not "one hundred and one").
-  */
+var lesstwenty = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+var Lesshundred = ['ten','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+function numToEng (num, en = []){
+    if (num === 0) 
+    return (en.length ? en : 'zero');
+    if (num < 20) {
+      en.push(lesstwenty[num]);
+      return (numToEng(0, en));
+    } 
+    if (num < 100) {
+      en.push(Lesshundred[Math.floor(num / 10) - 1])
+      return (numToEng(num % 10, en));
+    }
+    if (num < 1000) {
+      en.push(numToEng(Math.floor(num / 100)) + ' hundred');
+      return (numToEng(num % 100, en));
+    }
+};
+console.log(numToEng(909).join(' '));
